@@ -1,0 +1,28 @@
+{
+  "name": "Bayune Lutheran Secondary School Mathematics",
+  "short_name": "BayuneMaths",
+  "description": "Official Mathematics Department Portal",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f3f4f6",
+  "theme_color": "#1e3a8a",
+  "icons": [
+    {
+      "src": "/static/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/static/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,735 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 🔹 1. GOOGLE HTML VERIFICATION TAG (Replace the content value with your actual code from Google Search Console) -->
+    <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE_HERE" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- PRIMARY SEO META TAGS -->
+    <title>Bayune Lutheran Secondary School - Mathematics Department</title>
+    <meta name="description" content="Official Mathematics Department Portal for Bayune Lutheran Secondary School. Access study resources for Grades 9-12, exam schedules, teacher profiles, and academic announcements.">
+    <meta name="keywords" content="Bayune Lutheran, BLSS, Mathematics Department, PNG Education, Grade 9 Math, Grade 10 Math, Grade 11 Math, Grade 12 Math, Advanced Mathematics, General Mathematics, Study Resources, Teacher Portal">
+    <meta name="author" content="Bayune Lutheran Secondary School Mathematics Department">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="index, follow">
+    <meta name="theme-color" content="#1e3a8a">
+    <link rel="canonical" href="https://blss-mx-dept.onrender.com/">
+
+    <!-- OPEN GRAPH (Facebook, WhatsApp, LinkedIn Previews) -->
+    <meta property="og:title" content="Bayune Lutheran Secondary School - Mathematics Department">
+    <meta property="og:description" content="Official portal for student resources, teacher updates, and academic announcements.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://blss-mx-dept.onrender.com">
+    <meta property="og:image" content="https://blss-mx-dept.onrender.com/static/apple-touch-icon.png">
+    <meta property="og:site_name" content="Bayune Maths Department">
+
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bayune Lutheran - Mathematics Department">
+    <meta name="twitter:description" content="Official Mathematics portal for students and teachers.">
+    <meta name="twitter:image" content="https://blss-mx-dept.onrender.com/static/apple-touch-icon.png">
+
+    <!-- FAVICON & PWA ICONS -->
+    <link rel="icon" type="image/png" href="/static/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+    <link rel="shortcut icon" href="/static/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "Bayune Lutheran Secondary School - Mathematics Department",
+      "url": "https://blss-mx-dept.onrender.com",
+      "logo": "https://blss-mx-dept.onrender.com/static/apple-touch-icon.png",
+      "description": "Official Mathematics Department Portal providing study resources and academic announcements for Grades 9-12.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "PG"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "math.dept@bayunelhs.edu.pg",
+        "contactType": "Customer Service"
+      }
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.0/index.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .modal-backdrop { background-color: rgba(0,0,0,0.75); }
+        .media-player { width: 100%; max-height: 65vh; border-radius: 0.5rem; background: #000; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="fixed top-20 right-4 z-50 space-y-2" id="flash-container">
+                {% for message in messages %}
+                    <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 rounded shadow-lg fade-in max-w-sm">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <nav class="bg-blue-900 text-white shadow-lg sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-3">
+                <img src="/static/BLSS.png" alt="Logo" class="h-10 w-10 rounded-full border-2 border-white" onerror="this.src='https://ui-avatars.com/api/?name=BL&background=1e3a8a&color=fff&length=2&size=100'">
+                <div class="flex flex-col">
+                    <span class="text-lg md:text-xl font-bold tracking-tight leading-tight">Bayune Lutheran Secondary School</span>
+                    <span class="text-xs md:text-sm font-semibold text-blue-200">Mathematics Department</span>
+                </div>
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="/" class="hover:text-blue-200 transition {% if page == 'home' %}text-blue-300 font-semibold border-b-2 border-blue-300{% endif %}">Home</a>
+                <a href="/updates" class="hover:text-blue-200 transition {% if page == 'updates' %}text-blue-300 font-semibold border-b-2 border-blue-300{% endif %}">Updates</a>
+                <a href="/students" class="hover:text-blue-200 transition {% if page == 'students' %}text-blue-300 font-semibold border-b-2 border-blue-300{% endif %}">Students</a>
+                <a href="/teachers" class="hover:text-blue-200 transition {% if page == 'teachers' %}text-blue-300 font-semibold border-b-2 border-blue-300{% endif %}">Teachers</a>
+                <a href="/about" class="hover:text-blue-200 transition {% if page == 'about' %}text-blue-300 font-semibold border-b-2 border-blue-300{% endif %}">About</a>
+                {% if current_user.is_authenticated %}
+                    <a href="/logout" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-sm transition">Logout</a>
+                {% else %}
+                    <a href="/teachers" class="bg-white text-blue-900 hover:bg-blue-100 px-4 py-1 rounded text-sm font-semibold transition">Login</a>
+                {% endif %}
+            </div>
+
+            <button id="menu-btn" class="md:hidden p-2 rounded hover:bg-blue-800 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-blue-800 pb-4 px-4 space-y-2">
+            <a href="/" class="block py-2 hover:bg-blue-700 px-2 rounded {% if page == 'home' %}bg-blue-700{% endif %}">Home</a>
+            <a href="/updates" class="block py-2 hover:bg-blue-700 px-2 rounded {% if page == 'updates' %}bg-blue-700{% endif %}">Updates</a>
+            <a href="/students" class="block py-2 hover:bg-blue-700 px-2 rounded {% if page == 'students' %}bg-blue-700{% endif %}">Students</a>
+            <a href="/teachers" class="block py-2 hover:bg-blue-700 px-2 rounded {% if page == 'teachers' %}bg-blue-700{% endif %}">Teachers</a>
+            <a href="/about" class="block py-2 hover:bg-blue-700 px-2 rounded {% if page == 'about' %}bg-blue-700{% endif %}">About</a>
+            <hr class="border-blue-700 my-2">
+            {% if current_user.is_authenticated %}
+                <a href="/logout" class="block py-2 bg-red-600 hover:bg-red-700 px-2 rounded text-center">Logout</a>
+            {% else %}
+                <a href="/teachers" class="block py-2 bg-white text-blue-900 hover:bg-blue-100 px-2 rounded text-center font-semibold">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8 flex-grow fade-in">
+        {% if page == 'home' %}
+            <section class="text-center py-12">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-blue-900 mb-4">Bayune Lutheran Secondary School</h1>
+                <h2 class="text-2xl md:text-3xl font-semibold text-gray-700 mb-6">Mathematics Department Portal</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-10">Empowering students with comprehensive resources, timely announcements, and a collaborative learning environment for all grade levels.</p>
+                <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                    <a href="/updates" class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 border-t-4 border-blue-500">
+                        <h3 class="text-xl font-bold mb-2 text-blue-900">📢 Latest Updates</h3>
+                        <p class="text-gray-500">Read announcements, exam schedules, and academic news from our faculty.</p>
+                    </a>
+                    <a href="/students" class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 border-t-4 border-green-500">
+                        <h3 class="text-xl font-bold mb-2 text-blue-900">📖 Student Resources</h3>
+                        <p class="text-gray-500">Stream or download PDFs, videos, and practice materials by grade level.</p>
+                    </a>
+                    <a href="/teachers" class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 border-t-4 border-purple-500">
+                        <h3 class="text-xl font-bold mb-2 text-blue-900">👨‍🏫 Teacher Portal</h3>
+                        <p class="text-gray-500">Secure login for educators to manage content, profiles, and teaching aids.</p>
+                    </a>
+                </div>
+            </section>
+        {% elif page == 'updates' %}
+            <section class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-blue-900 mb-6 flex items-center gap-2">📢 Announcements & Updates</h2>
+                {% if current_user.is_authenticated and current_user.role == 'teacher' %}
+                    <form action="/api/updates" method="POST" class="bg-white p-6 rounded-lg shadow-md mb-8 border-l-4 border-blue-500">
+                        <h3 class="text-lg font-semibold mb-3">Post New Update</h3>
+                        <input type="text" name="title" placeholder="Update Title" required class="w-full p-3 border border-gray-300 rounded mb-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        <textarea name="content" placeholder="Write your announcement or update here..." rows="4" required class="w-full p-3 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                        <button type="submit" class="bg-blue-900 text-white px-6 py-2 rounded hover:bg-blue-800 transition w-full md:w-auto">Publish Update</button>
+                    </form>
+                {% endif %}
+                <div class="space-y-4">
+                    {% for update in updates %}
+                        <article class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition relative">
+                            <div class="flex justify-between items-start mb-2 flex-wrap gap-2">
+                                <h3 class="text-xl font-bold text-blue-900">{{ update.title }}</h3>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs bg-gray-100 text-gray-500 px-2 py-1 rounded">{{ update.created_at.strftime('%B %d, %Y') }}</span>
+                                    {% if current_user.is_authenticated and current_user.role == 'teacher' %}
+                                        <button onclick="document.getElementById('edit-modal-{{ update.id }}').classList.remove('hidden')" class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded hover:bg-yellow-200">Edit</button>
+                                        <form action="/api/updates/{{ update.id }}/delete" method="POST" class="inline" onsubmit="return confirm('Delete this update?');">
+                                            <button type="submit" class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded hover:bg-red-200">Delete</button>
+                                        </form>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <p class="text-gray-500 text-sm mb-3">By: {{ update.author.username }}</p>
+                            <p class="text-gray-700 whitespace-pre-line leading-relaxed">{{ update.content }}</p>
+                            
+                            <div id="edit-modal-{{ update.id }}" class="fixed inset-0 z-50 hidden items-center justify-center modal-backdrop p-4">
+                                <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg p-6">
+                                    <h3 class="text-lg font-bold mb-4">Edit Update</h3>
+                                    <form action="/api/updates/{{ update.id }}/edit" method="POST">
+                                        <input type="text" name="title" value="{{ update.title }}" required class="w-full p-3 border border-gray-300 rounded mb-3">
+                                        <textarea name="content" rows="4" required class="w-full p-3 border border-gray-300 rounded mb-4">{{ update.content }}</textarea>
+                                        <div class="flex justify-end gap-2">
+                                            <button type="button" onclick="document.getElementById('edit-modal-{{ update.id }}').classList.add('hidden')" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Cancel</button>
+                                            <button type="submit" class="px-4 py-2 bg-blue-900 text-white rounded hover:bg-blue-800">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </article>
+                    {% else %}
+                        <div class="text-center py-12 bg-white rounded-lg shadow"><p class="text-gray-500 text-lg">No updates posted yet.</p></div>
+                    {% endfor %}
+                </div>
+            </section>
+        {% elif page == 'students' %}
+            <section>
+                <h2 class="text-3xl font-bold text-blue-900 mb-6">📖 Student Learning Resources</h2>
+                <p class="text-gray-600 mb-6">Stream or download materials by grade. Large videos/audio are served statically to bypass server limits.</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {% set grades = ['Grade 12 Advanced Mathematics', 'Grade 12 General Mathematics', 'Grade 11 Advanced Mathematics', 'Grade 11 General Mathematics', 'Grade 10 Mathematics', 'Grade 9 Mathematics'] %}
+                    {% for grade in grades %}
+                        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col h-full">
+                            <h3 class="text-xl font-bold text-blue-900 mb-3 border-b pb-2">{{ grade }}</h3>
+                            {% if current_user.is_authenticated and current_user.role == 'teacher' %}
+                                <div class="bg-gray-50 p-3 rounded border border-dashed border-gray-300 mb-4 space-y-2">
+                                    <details>
+                                        <summary class="cursor-pointer text-sm font-medium text-blue-700">Upload Small File (&lt;100MB)</summary>
+                                        <form action="/api/resources" method="POST" enctype="multipart/form-data" class="mt-2">
+                                            <input type="hidden" name="grade" value="{{ grade }}">
+                                            <input type="file" name="file" required class="w-full text-sm mb-2 file:mr-4 file:py-1 file:px-3 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                                            <button type="submit" class="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 w-full text-sm font-medium">Upload</button>
+                                        </form>
+                                    </details>
+                                    <details>
+                                        <summary class="cursor-pointer text-sm font-medium text-purple-700">Register Large Static File (Video/Audio)</summary>
+                                        <form action="/api/resources/register-static" method="POST" class="mt-2">
+                                            <input type="hidden" name="grade" value="{{ grade }}">
+                                            <input type="text" name="filename" placeholder="exact filename.mp4" required class="w-full p-2 border rounded text-sm mb-2">
+                                            <button type="submit" class="bg-purple-600 text-white px-3 py-1 rounded hover:bg-purple-700 w-full text-sm font-medium">Register</button>
+                                        </form>
+                                    </details>
+                                </div>
+                            {% endif %}
+                            <ul class="space-y-2 flex-grow">
+                                {% for res in resources if res.grade == grade %}
+                                    <li class="flex justify-between items-center bg-gray-50 p-2 rounded border border-gray-100 hover:bg-gray-100 transition flex-wrap gap-2">
+                                        <div class="flex items-center gap-2 overflow-hidden flex-1 min-w-0">
+                                            <span class="text-xs font-bold px-1.5 py-0.5 rounded 
+                                                {% if res.file_type == 'pdf' %}bg-red-100 text-red-700
+                                                {% elif res.file_type == 'csv' %}bg-green-100 text-green-700
+                                                {% elif res.file_type in ['png','jpg','jpeg','gif'] %}bg-purple-100 text-purple-700
+                                                {% elif res.file_type in ['mp3','wav'] %}bg-pink-100 text-pink-700
+                                                {% else %}bg-blue-100 text-blue-700{% endif %}">
+                                                {{ res.file_type.upper() }}
+                                            </span>
+                                            <span class="text-sm truncate" title="{{ res.original_filename }}">{{ res.original_filename }}</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 ml-2 flex-wrap">
+                                            {% if res.file_type in ['mp4','webm','mp3','wav'] %}
+                                                <button onclick="openPlayer('{{ res.id }}', '{{ res.file_type }}')" class="text-indigo-600 hover:underline text-xs font-semibold whitespace-nowrap">▶ Play</button>
+                                            {% endif %}
+                                            <button onclick="openPreview('{{ res.id }}', '{{ res.file_type }}')" class="text-blue-600 hover:underline text-xs font-semibold whitespace-nowrap">Preview</button>
+                                            <a href="/api/resources/{{ res.id }}/download" class="text-green-600 hover:underline text-xs font-semibold whitespace-nowrap">Download</a>
+                                            {% if current_user.is_authenticated and current_user.role == 'teacher' %}
+                                                <form action="/api/resources/{{ res.id }}/delete" method="POST" class="inline" onsubmit="return confirm('Delete this file?');">
+                                                    <button type="submit" class="text-red-600 hover:underline text-xs font-semibold whitespace-nowrap">Del</button>
+                                                </form>
+                                            {% endif %}
+                                        </div>
+                                    </li>
+                                {% else %}
+                                    <li class="text-gray-400 text-sm italic">No resources uploaded yet.</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% if current_user.is_authenticated and current_user.role == 'teacher' %}
+                    <div class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg text-sm text-yellow-800">
+                        <strong>💡 How to add large videos/audio:</strong><br>
+                        1. Place your file in <code class="bg-white px-1 rounded">/workspaces/blssmx2026/static/resources/</code> using terminal or SFTP.<br>
+                        2. Use the "Register Large Static File" dropdown in any grade section.<br>
+                        3. Type the exact filename (e.g., `grade12_adv_ch1.mp4`) and submit.
+                    </div>
+                {% endif %}
+            </section>
+        {% elif page == 'teachers' %}
+            <section class="max-w-5xl mx-auto">
+                <h2 class="text-3xl font-bold text-blue-900 mb-6 text-center">👨‍🏫 Teacher Portal</h2>
+                
+                {% if not current_user.is_authenticated %}
+                    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                        <div class="bg-white p-8 rounded-xl shadow-lg">
+                            <h3 class="text-xl font-semibold mb-4 text-center text-blue-900">Existing Teacher Login</h3>
+                            <form action="/login" method="POST" class="space-y-4">
+                                <input type="text" name="username" placeholder="Username" required class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                                <input type="password" name="password" placeholder="Password" required class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                                <button type="submit" class="bg-blue-900 text-white px-6 py-2 rounded hover:bg-blue-800 w-full font-semibold transition">Login</button>
+                            </form>
+                        </div>
+
+                        <div class="bg-green-50 p-8 rounded-xl shadow-lg border-2 border-green-200">
+                            <h3 class="text-xl font-semibold mb-2 text-center text-green-800">New Teacher Registration</h3>
+                            <p class="text-sm text-gray-600 mb-4 text-center">Create your own teacher profile.</p>
+                            <form action="/api/teachers/register" method="POST" class="space-y-3">
+                                <input type="text" name="full_name" placeholder="Full Name (e.g., Mr. John Smith)" required class="w-full p-3 border border-gray-300 rounded">
+                                <select name="position" required class="w-full p-3 border border-gray-300 rounded bg-white">
+                                    <option value="" disabled selected>Select Position</option>
+                                    <option value="Mx HOD">Mx HOD</option>
+                                    <option value="SSM">SSM</option>
+                                    <option value="SM">SM</option>
+                                    <option value="Senior Teacher">Senior Teacher</option>
+                                    <option value="Teacher">Teacher</option>
+                                </select>
+                                <input type="text" name="username" placeholder="Choose a Username" required class="w-full p-3 border border-gray-300 rounded">
+                                <input type="password" name="password" placeholder="Choose a Password" required class="w-full p-3 border border-gray-300 rounded">
+                                <input type="text" name="school_code" placeholder="School Secret Code" required class="w-full p-3 border border-gray-300 rounded bg-yellow-50" title="Ask the HOD for the code">
+                                <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 w-full font-semibold transition flex items-center justify-center gap-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                                    Create My Account
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="flex flex-col sm:flex-row justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-gray-800">Department Faculty Profiles</h3>
+                        {% if 'hod' in current_user.position.lower() %}
+                            <a href="/hod-dashboard" class="bg-red-700 text-white px-4 py-2 rounded hover:bg-red-800 text-sm font-medium transition flex items-center gap-1 mt-2 sm:mt-0">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                                HOD Management Dashboard
+                            </a>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                        {% for teacher in teachers %}
+                            <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center text-center hover:shadow-lg transition border-t-4 border-purple-500 relative">
+                                {% if teacher.profile_image %}
+                                    {% if teacher.profile_image.startswith('http') %}
+                                        <img src="{{ teacher.profile_image }}" alt="{{ teacher.full_name }}" class="w-24 h-24 rounded-full mb-4 border-4 border-gray-100 shadow-sm object-cover">
+                                    {% else %}
+                                        <img src="{{ url_for('uploaded_file', filename=teacher.profile_image) }}" alt="{{ teacher.full_name }}" class="w-24 h-24 rounded-full mb-4 border-4 border-gray-100 shadow-sm object-cover">
+                                    {% endif %}
+                                {% else %}
+                                    <img src="https://ui-avatars.com/api/?name={{ teacher.full_name|urlencode }}&background=6d28d9&color=fff&length=2&size=120" alt="Default" class="w-24 h-24 rounded-full mb-4 border-4 border-gray-100 shadow-sm">
+                                {% endif %}
+                                <h4 class="text-lg font-bold text-blue-900">{{ teacher.full_name }}</h4>
+                                <p class="text-purple-600 font-semibold text-sm mb-2">{{ teacher.position }}</p>
+                                <p class="text-xs text-gray-500">@{{ teacher.username }}</p>
+                                
+                                {% if current_user.id == teacher.id %}
+                                    <button onclick="openProfileEdit('{{ teacher.full_name|e }}', '{{ teacher.position|e }}')" class="mt-3 w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 text-sm font-medium transition">Edit My Profile</button>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <div id="profile-edit-modal" class="fixed inset-0 z-50 hidden items-center justify-center modal-backdrop p-4">
+                        <div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-6">
+                            <h3 class="text-lg font-bold mb-4">Edit Your Profile</h3>
+                            <form action="/api/teacher/profile" method="POST" enctype="multipart/form-data" class="space-y-3">
+                                <input type="text" name="full_name" id="edit-fullname" class="w-full p-3 border border-gray-300 rounded">
+                                <input type="text" name="position" id="edit-position" placeholder="Position (e.g., Mx HOD, SSM)" class="w-full p-3 border border-gray-300 rounded">
+                                <input type="file" name="profile_image" accept="image/*" class="w-full p-2 border rounded text-sm file:mr-4 file:py-1 file:px-3 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700">
+                                <div class="flex justify-end gap-2 mt-4">
+                                    <button type="button" onclick="closeProfileEdit()" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Cancel</button>
+                                    <button type="submit" class="px-4 py-2 bg-purple-900 text-white rounded hover:bg-purple-800">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">🎒 Teachers' Aids</h3>
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-inner mb-8">
+                        <div class="grid md:grid-cols-2 gap-4 mb-6 bg-white p-4 rounded border">
+                            <div>
+                                <h4 class="font-medium mb-2 text-blue-800">Upload Small File / URL</h4>
+                                <form action="/api/teacher-aids" method="POST" enctype="multipart/form-data" class="space-y-2">
+                                    <input type="text" name="title" placeholder="Resource Title" required class="w-full p-2 border rounded text-sm">
+                                    <select name="file_type" class="w-full p-2 border rounded text-sm">
+                                        <option value="pdf">PDF</option><option value="ppt">PowerPoint</option><option value="csv">CSV</option><option value="mp3">Audio</option><option value="mp4">Video</option><option value="website">Website Link</option>
+                                    </select>
+                                    <input type="text" name="url" placeholder="Website URL (Optional)" class="w-full p-2 border rounded text-sm">
+                                    <input type="file" name="file" class="w-full p-2 border rounded text-sm file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:bg-blue-50 file:text-blue-700">
+                                    <textarea name="description" placeholder="Description (Optional)" rows="1" class="w-full p-2 border rounded text-sm"></textarea>
+                                    <button type="submit" class="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-800 text-sm w-full">Upload</button>
+                                </form>
+                            </div>
+                            <div>
+                                <h4 class="font-medium mb-2 text-purple-800">Register Large Static File</h4>
+                                <form action="/api/teacher-aids/register-static" method="POST" class="space-y-2">
+                                    <input type="text" name="title" placeholder="Resource Title" required class="w-full p-2 border rounded text-sm">
+                                    <input type="text" name="filename" placeholder="exact filename.mp4" required class="w-full p-2 border rounded text-sm">
+                                    <select name="file_type" class="w-full p-2 border rounded text-sm">
+                                        <option value="mp4">Video</option><option value="mp3">Audio</option><option value="wav">Audio</option><option value="pdf">PDF</option>
+                                    </select>
+                                    <textarea name="description" placeholder="Description (Optional)" rows="2" class="w-full p-2 border rounded text-sm"></textarea>
+                                    <button type="submit" class="bg-purple-900 text-white px-4 py-2 rounded hover:bg-purple-800 text-sm w-full">Register</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="grid gap-4">
+                            {% for aid in aids %}
+                                <div class="bg-white p-4 rounded-lg shadow flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                                    <div>
+                                        <h4 class="font-bold text-blue-900">{{ aid.title }}</h4>
+                                        <p class="text-xs text-gray-500">Type: {{ aid.file_type.upper() }} | By: {{ aid.uploader.username }} | {{ aid.uploaded_at.strftime('%Y-%m-%d') }}</p>
+                                        {% if aid.description %}<p class="text-sm text-gray-600 mt-1">{{ aid.description }}</p>{% endif %}
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        {% if aid.file_type in ['mp3','mp4','webm','wav'] %}
+                                            <button onclick="openPlayer('{{ aid.id }}', '{{ aid.file_type }}', true)" class="text-indigo-600 hover:underline text-sm font-semibold">▶ Play</button>
+                                        {% endif %}
+                                        <a href="/api/teacher-aids/{{ aid.id }}/download" class="text-green-600 hover:underline text-sm font-semibold">Get</a>
+                                        <form action="/api/teacher-aids/{{ aid.id }}/delete" method="POST" class="inline" onsubmit="return confirm('Delete this aid?');">
+                                            <button type="submit" class="text-red-600 hover:underline text-sm font-semibold">Del</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <p class="text-gray-500 text-center py-4">No aids uploaded yet.</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <a href="/logout" class="text-red-600 hover:underline font-medium">Logout</a>
+                    </div>
+                {% endif %}
+            </section>
+        {% elif page == 'hod' %}
+            <section class="max-w-6xl mx-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold text-blue-900">🛡️ HOD Management Dashboard</h2>
+                    <a href="/teachers" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">Back to Teachers</a>
+                </div>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <table class="w-full text-left">
+                        <thead class="bg-blue-50 text-blue-900">
+                            <tr>
+                                <th class="p-4">Full Name</th>
+                                <th class="p-4">Position</th>
+                                <th class="p-4">Username</th>
+                                <th class="p-4">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            {% for teacher in teachers %}
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-4 font-medium">{{ teacher.full_name }}</td>
+                                <td class="p-4"><span class="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs">{{ teacher.position }}</span></td>
+                                <td class="p-4 font-mono text-sm">{{ teacher.username }}</td>
+                                <td class="p-4 flex gap-2 flex-wrap">
+                                    <form action="/api/hod/reset-password/{{ teacher.id }}" method="POST" class="inline" onsubmit="return confirm('Reset password to BLSS2024?');">
+                                        <button type="submit" class="bg-yellow-500 text-white px-3 py-1 rounded text-xs hover:bg-yellow-600">Reset PW</button>
+                                    </form>
+                                    <button onclick="document.getElementById('edit-un-modal-{{ teacher.id }}').classList.remove('hidden')" class="bg-blue-500 text-white px-3 py-1 rounded text-xs hover:bg-blue-600">Edit User</button>
+                                    {% if teacher.id != current_user.id %}
+                                    <form action="/api/hod/delete-user/{{ teacher.id }}" method="POST" class="inline" onsubmit="return confirm('Permanently delete this teacher and all their uploads?');">
+                                        <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded text-xs hover:bg-red-700 font-semibold">Delete Profile</button>
+                                    </form>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <div id="edit-un-modal-{{ teacher.id }}" class="fixed inset-0 z-50 hidden items-center justify-center modal-backdrop p-4">
+                                <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm p-6">
+                                    <h3 class="text-lg font-bold mb-4">Edit Username: {{ teacher.full_name }}</h3>
+                                    <form action="/api/hod/update-username/{{ teacher.id }}" method="POST" class="space-y-3">
+                                        <input type="text" name="new_username" value="{{ teacher.username }}" required class="w-full p-3 border border-gray-300 rounded">
+                                        <div class="flex justify-end gap-2">
+                                            <button type="button" onclick="document.getElementById('edit-un-modal-{{ teacher.id }}').classList.add('hidden')" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Cancel</button>
+                                            <button type="submit" class="px-4 py-2 bg-blue-900 text-white rounded hover:bg-blue-800">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg text-sm text-yellow-800">
+                    <strong>⚠️ Security Note:</strong> Passwords are encrypted and cannot be viewed. The "Reset PW" button changes the password to the default: <code>BLSS2024</code>. The "Delete Profile" button permanently removes the teacher and all their associated uploads.
+                </div>
+            </section>
+        {% elif page == 'about' %}
+            <section class="max-w-4xl mx-auto space-y-10">
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <h2 class="text-3xl font-bold text-blue-900 mb-4 border-b pb-4">🏫 About Bayune Lutheran Secondary School</h2>
+                    <div class="prose max-w-none text-gray-700 leading-relaxed space-y-4">
+                        <p>Bayune Lutheran Secondary School is committed to fostering academic excellence, moral integrity, and community service. Our Mathematics Department plays a pivotal role in equipping students with analytical thinking, problem-solving abilities, and a strong foundation for tertiary education and future careers.</p>
+                        <p>This digital portal was developed to centralize learning resources, streamline communication between faculty and students, and provide a secure, organized environment for academic materials. All content is curated by licensed mathematics educators to align with the national curriculum standards.</p>
+                        <div class="grid md:grid-cols-2 gap-6 mt-8">
+                            <div class="bg-blue-50 p-5 rounded-lg">
+                                <h4 class="font-bold text-blue-900 mb-2">Our Mission</h4>
+                                <p class="text-sm">To cultivate mathematical literacy and confidence in every student through innovative teaching methods and accessible resources.</p>
+                            </div>
+                            <div class="bg-purple-50 p-5 rounded-lg">
+                                <h4 class="font-bold text-purple-900 mb-2">Contact Dept.</h4>
+                                <p class="text-sm">Mathematics Department Head<br>Email: math.dept@bayunelhs.edu.pg<br>Hours: Mon-Fri, 8:00 AM - 4:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <h2 class="text-3xl font-bold text-blue-900 mb-6 flex items-center gap-2">📝 Comments & Queries</h2>
+                    <p class="text-gray-600 mb-6">Students, parents, and citizens are welcome to submit questions, feedback, or suggestions.</p>
+                    
+                    <form action="/api/comments" method="POST" class="bg-gray-50 p-6 rounded-lg border border-dashed border-gray-300 mb-8">
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <input type="text" name="full_name" placeholder="Full Name" required class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                            <select name="status" id="comment-status" onchange="toggleClassDropdown()" required class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white">
+                                <option value="">Select Status</option>
+                                <option value="Parent">Parent</option>
+                                <option value="Citizen">Citizen</option>
+                                <option value="Student">Student</option>
+                            </select>
+                        </div>
+                        
+                        <div id="class-select-container" class="hidden mb-4">
+                            <select name="class_name" id="class-dropdown" class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white">
+                                <option value="">Select Class</option>
+                                {% for grade in [9,10] %}
+                                    {% for letter in ['A','B','C','D','E','F','G','H'] %}
+                                        <option value="{{ grade }}{{ letter }}">Grade {{ grade }}{{ letter }}</option>
+                                    {% endfor %}
+                                {% endfor %}
+                                {% for grade in [11,12] %}
+                                    {% for num in [1,2,3,4] %}
+                                        <option value="{{ grade }}.{{ num }}">Grade {{ grade }}.{{ num }}</option>
+                                    {% endfor %}
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <input type="email" name="email" placeholder="Email Address" class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                            <input type="tel" name="phone" placeholder="Phone Number" class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        </div>
+                        
+                        <div class="relative">
+                            <textarea name="content" id="comment-content" placeholder="Write your comment/query here (Max 255 words)..." rows="4" required maxlength="1500" class="w-full p-3 border border-gray-300 rounded mb-2 focus:outline-none focus:ring-2 focus:ring-blue-400" oninput="updateWordCount()"></textarea>
+                            <span id="word-counter" class="absolute bottom-3 right-3 text-xs text-gray-500 bg-gray-50 px-2 py-1 rounded">0 / 255 words</span>
+                        </div>
+                        <button type="submit" class="bg-blue-900 text-white px-6 py-2 rounded hover:bg-blue-800 transition w-full md:w-auto font-medium">Submit Comment</button>
+                    </form>
+
+                    {% if current_user.is_authenticated and current_user.role == 'teacher' %}
+                        <h3 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">Received Comments (Teachers Only)</h3>
+                        <div class="space-y-4">
+                            {% for comment in comments %}
+                                <article class="bg-white p-5 rounded-lg shadow border-l-4 border-yellow-400 relative">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <h4 class="font-bold text-blue-900">{{ comment.full_name }}</h4>
+                                            <div class="flex flex-wrap gap-2 text-xs mt-1">
+                                                <span class="bg-gray-100 px-2 py-1 rounded">{{ comment.status }}</span>
+                                                {% if comment.class_name %}
+                                                    <span class="bg-purple-100 text-purple-700 px-2 py-1 rounded">Class: {{ comment.class_name }}</span>
+                                                {% endif %}
+                                            </div>
+                                            <div class="flex flex-wrap gap-3 mt-3 text-sm font-medium">
+                                                {% if comment.email %}
+                                                    <a href="mailto:{{ comment.email }}" class="flex items-center gap-1 text-blue-600 hover:text-blue-800 bg-blue-50 px-3 py-1 rounded transition">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                                        {{ comment.email }}
+                                                    </a>
+                                                {% endif %}
+                                                {% if comment.phone %}
+                                                    <a href="tel:{{ comment.phone }}" class="flex items-center gap-1 text-green-600 hover:text-green-800 bg-green-50 px-3 py-1 rounded transition">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                                        {{ comment.phone }}
+                                                    </a>
+                                                {% endif %}
+                                            </div>
+                                            <p class="text-xs text-gray-400 mt-2">{{ comment.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                                        </div>
+                                        <form action="/api/comments/{{ comment.id }}/delete" method="POST" onsubmit="return confirm('Delete this comment permanently?');">
+                                            <button type="submit" class="text-red-600 hover:text-red-800 text-sm font-medium flex items-center gap-1">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <p class="text-gray-700 mt-3 whitespace-pre-line leading-relaxed">{{ comment.content }}</p>
+                                </article>
+                            {% else %}
+                                <p class="text-center text-gray-500 py-6">No comments submitted yet.</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </section>
+        {% endif %}
+    </main>
+
+    <div id="player-modal" class="fixed inset-0 z-50 hidden items-center justify-center modal-backdrop p-4">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden relative">
+            <div class="flex justify-between items-center p-4 border-b bg-gray-50">
+                <h3 class="font-bold text-lg text-blue-900">Streaming Player</h3>
+                <button onclick="closePlayer()" class="text-gray-500 hover:text-red-500 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div id="player-container" class="flex-grow overflow-auto p-4 bg-black flex items-center justify-center"></div>
+        </div>
+    </div>
+
+    <div id="preview-modal" class="fixed inset-0 z-50 hidden items-center justify-center modal-backdrop p-4">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden relative">
+            <div class="flex justify-between items-center p-4 border-b bg-gray-50">
+                <h3 class="font-bold text-lg text-blue-900">File Preview</h3>
+                <button onclick="closePreview()" class="text-gray-500 hover:text-red-500 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div id="preview-container" class="flex-grow overflow-auto p-4 bg-gray-100 preview-content flex items-center justify-center"></div>
+        </div>
+    </div>
+
+    <footer class="bg-gray-900 text-gray-400 py-6 text-center mt-auto">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2026 Bayune Lutheran Secondary School Mathematics Department. All rights reserved.</p>
+            <p>Architectured By Mr BENNY</p>
+        </div>
+    </footer>
+
+    <script>
+        function safeElement(id) { return document.getElementById(id); }
+
+        const menuBtn = safeElement('menu-btn');
+        const mobileMenu = safeElement('mobile-menu');
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+        }
+        
+        setTimeout(() => {
+            document.querySelectorAll('.bg-blue-100').forEach(f => {
+                f.style.opacity = '0'; f.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => f.remove(), 500);
+            });
+        }, 4000);
+
+        function toggleClassDropdown() {
+            const commentStatus = safeElement('comment-status');
+            const container = safeElement('class-select-container');
+            const classInput = safeElement('class-dropdown');
+            if (!commentStatus || !container || !classInput) return;
+            if (commentStatus.value === 'Student') {
+                container.classList.remove('hidden'); classInput.required = true;
+            } else {
+                container.classList.add('hidden'); classInput.value = ''; classInput.required = false;
+            }
+        }
+
+        function updateWordCount() {
+            const commentContent = safeElement('comment-content');
+            const counter = safeElement('word-counter');
+            if (!commentContent || !counter) return;
+            const text = commentContent.value.trim();
+            const words = text === '' ? 0 : text.split(/\s+/).length;
+            counter.textContent = `${words} / 255 words`;
+            counter.classList.toggle('text-red-500', words > 255);
+            counter.classList.toggle('text-green-600', words <= 255 && words > 0);
+        }
+
+        function openPlayer(id, type, isAid = false) {
+            const modal = safeElement('player-modal');
+            const container = safeElement('player-container');
+            if (!modal || !container) return;
+            const route = isAid ? 'teacher-aids' : 'resources';
+            const url = `/api/${route}/${id}/preview`;
+            modal.classList.remove('hidden'); modal.classList.add('flex');
+            container.innerHTML = `<p class="text-white animate-pulse">Loading stream...</p>`;
+            if (['mp3', 'wav'].includes(type)) {
+                container.innerHTML = `<audio controls autoplay class="media-player"><source src="${url}" type="audio/${type === 'mp3' ? 'mpeg' : 'wav'}"></audio>`;
+            } else {
+                container.innerHTML = `<video controls autoplay class="media-player"><source src="${url}" type="video/${type}"></video>`;
+            }
+        }
+        function closePlayer() {
+            const modal = safeElement('player-modal');
+            const container = safeElement('player-container');
+            if (!modal || !container) return;
+            modal.classList.add('hidden'); modal.classList.remove('flex'); container.innerHTML = '';
+        }
+        const playerModal = safeElement('player-modal');
+        if (playerModal) playerModal.addEventListener('click', (e) => { if(e.target.id === 'player-modal') closePlayer(); });
+
+        function openPreview(id, type, isAid = false) {
+            const modal = safeElement('preview-modal');
+            const container = safeElement('preview-container');
+            if (!modal || !container) return;
+            const route = isAid ? 'teacher-aids' : 'resources';
+            const url = `/api/${route}/${id}/preview`;
+            modal.classList.remove('hidden'); modal.classList.add('flex');
+            container.innerHTML = '<p class="text-gray-500 animate-pulse">Loading preview...</p>';
+            if (['png', 'jpg', 'jpeg', 'gif'].includes(type)) {
+                container.innerHTML = `<img src="${url}" class="max-w-full max-h-[70vh] object-contain rounded">`;
+            } else if (type === 'pdf') {
+                container.innerHTML = `<iframe src="${url}" class="w-full h-[70vh] border-none rounded"></iframe>`;
+            } else {
+                fetch(url).then(r => r.text()).then(t => {
+                    container.innerHTML = `<pre class="bg-white p-4 rounded border text-sm overflow-auto w-full max-h-[70vh] whitespace-pre-wrap">${t.replace(/</g, '&lt;')}</pre>`;
+                });
+            }
+        }
+        function closePreview() {
+            const modal = safeElement('preview-modal');
+            const container = safeElement('preview-container');
+            if (!modal || !container) return;
+            modal.classList.add('hidden'); modal.classList.remove('flex'); container.innerHTML = '';
+        }
+        const previewModal = safeElement('preview-modal');
+        if (previewModal) previewModal.addEventListener('click', (e) => { if(e.target.id === 'preview-modal') closePreview(); });
+
+        function openProfileEdit(name, pos) {
+            const modal = safeElement('profile-edit-modal');
+            const nameInput = safeElement('edit-fullname');
+            const posInput = safeElement('edit-position');
+            if (!modal) return;
+            if (nameInput) nameInput.value = name;
+            if (posInput) posInput.value = pos;
+            modal.classList.remove('hidden'); modal.classList.add('flex');
+        }
+        function closeProfileEdit() {
+            const modal = safeElement('profile-edit-modal');
+            if (!modal) return;
+            modal.classList.add('hidden'); modal.classList.remove('flex');
+        }
+        const profileEditModal = safeElement('profile-edit-modal');
+        if (profileEditModal) profileEditModal.addEventListener('click', (e) => { if(e.target.id === 'profile-edit-modal') closeProfileEdit(); });
+
+        const addTeacherModal = safeElement('add-teacher-modal');
+        if (addTeacherModal) {
+            addTeacherModal.addEventListener('click', (e) => {
+                if (e.target.id === 'add-teacher-modal') {
+                    addTeacherModal.classList.add('hidden'); addTeacherModal.classList.remove('flex');
+                }
+            });
+        }
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW registration failed:', err));
+            });
+        }
+    </script>
+</body>
+</html>
