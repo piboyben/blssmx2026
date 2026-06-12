@@ -1,4 +1,3 @@
-
 import os
 import mimetypes
 import cloudinary
@@ -215,7 +214,7 @@ def register_teacher():
     position = request.form.get('position', '').strip()
     school_code = request.form.get('school_code', '').strip()
 
-    if school_code != 'BLSS2026':
+    if school_code != 'BLSS2024':
         flash('Invalid School Registration Code. Please contact the HOD.')
         return redirect(url_for('teachers'))
 
@@ -285,7 +284,7 @@ def hod_reset_password(user_id):
         abort(403)
     user = db.session.get(User, user_id)
     if user and user.role == 'teacher':
-        new_pw = request.form.get('new_password', 'BLSS2026')
+        new_pw = request.form.get('new_password', 'BLSS2024')
         user.password_hash = generate_password_hash(new_pw)
         db.session.commit()
         flash(f'Password for {user.username} reset to: {new_pw}')
