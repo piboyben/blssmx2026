@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://blssmx2026.onrender.com/sitemap.xml
